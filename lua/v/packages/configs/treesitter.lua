@@ -1,4 +1,8 @@
 require('nvim-treesitter.configs').setup({
+  modules = {},
+  auto_install = true,
+  sync_install = false,
+  ignore_install = {},
   ensure_installed = {
     'bash',
     'c',
@@ -22,8 +26,6 @@ require('nvim-treesitter.configs').setup({
     'yaml',
     'zig',
   },
-  auto_install = true,
-  sync_install = false,
   highlight = { enable = true },
   incremental_selection = { enable = false },
   indent = { enable = true },
@@ -34,5 +36,4 @@ require('nvim-treesitter.configs').setup({
     enable_close = true,
     enable_close_on_slash = true,
   },
-  matchup = { enable = true },
 })

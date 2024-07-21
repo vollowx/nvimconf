@@ -52,6 +52,7 @@ fzf.setup({
     row = 1,
     col = 0,
     border = { '', '─', '', '', '', '', '', '' },
+    backdrop = 100,
     preview = { hidden = 'hidden' },
   },
   hls = {
