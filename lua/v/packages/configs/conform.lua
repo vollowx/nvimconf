@@ -13,6 +13,7 @@ require('conform').setup({
     lua             = { 'stylua' },
     javascript      = { 'prettier' },
     javascriptreact = { 'prettier' },
+    nix             = { 'nixfmt' },
     rust            = { 'rustfmt' },
     sh              = { 'shfmt' },
     typescript      = { 'prettier' },
