@@ -1,8 +1,5 @@
 vim.loader.enable()
 
-vim.g.has_ui = #vim.api.nvim_list_uis() > 0
-vim.g.has_gui = vim.g.has_ui and (vim.env.DISPLAY ~= nil or vim.env.WAYLAND_DISPLAY ~= nil)
-
 _G.settings = {
   ui = {
     border = 'solid',
@@ -136,4 +133,11 @@ _G.icons                = {
   },
 }
 
-require('v')
+vim.g.has_ui = #vim.api.nvim_list_uis() > 0
+vim.g.has_gui = vim.g.has_ui and (vim.env.DISPLAY ~= nil or vim.env.WAYLAND_DISPLAY ~= nil)
+
+require('core.options')
+require('core.keymaps')
+require('core.autocmds')
+require('core.commands')
+require('core.packages')
