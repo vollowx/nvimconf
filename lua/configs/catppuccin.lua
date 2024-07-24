@@ -99,6 +99,7 @@ require('catppuccin').setup({
   highlight_overrides = {
     all = function(colors)
       return {
+        ["@character.special.gitignore"] = { fg = colors.mauve }, -- catppuccin/nvim#736
         FzfLuaBorder = { link = 'WinSeparator' },
 
         NormalFloat = { bg = colors.mantle },
@@ -108,41 +109,15 @@ require('catppuccin').setup({
         Pmenu = { bg = colors.mantle },
         PmenuSbar = { bg = colors.crust },
         PmenuThumb = { bg = colors.surface0 },
-        VertSplit = { fg = colors.base },
+        WinSeparator = { fg = colors.surface1 },
         CmpGhostText = { link = 'Comment' },
         Folded = { link = 'Comment' },
-        LazyBackdrop = { bg = colors.base },
-
-        TelescopeSelection = { bg = colors.surface0 },
-        TelescopePromptCounter = { fg = colors.mauve, style = { 'bold' } },
-
-        TelescopePromptPrefix = { bg = colors.surface0 },
-        TelescopePromptNormal = { bg = colors.surface0 },
-        TelescopeResultsNormal = { bg = colors.mantle },
-        TelescopePreviewNormal = { bg = colors.crust },
-
-        TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
-        TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
-        TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
-        TelescopePreviewMessage = { fg = colors.teal, style = { 'italic' } },
-
-        TelescopePromptTitle = { fg = colors.surface0, bg = colors.surface0 },
-        TelescopeResultsTitle = { fg = colors.mantle, bg = colors.mantle },
-        TelescopePreviewTitle = { fg = colors.crust, bg = colors.crust },
 
         GitSignsChange = { fg = colors.peach },
         GitSignsCurrentLineBlame = { link = 'Comment' },
 
-        HimalayaHead = { fg = colors.overlay0 },
-
-        IndentBlanklineChar = { fg = colors.surface0 },
-        IndentBlanklineContextChar = { fg = colors.surface2 },
-
-        NoiceConfirm = { bg = colors.mantle, fg = colors.mauve },
-        NoiceCmdlineIconLua = { fg = colors.blue },
-        NoiceConfirmBorder = { bg = colors.mantle, fg = colors.mantle },
-        NoiceMini = { link = 'Comment' },
-        NoiceLspProgressClient = { fg = colors.blue, style = { 'italic', 'bold' } },
+        IblIndent = { fg = colors.surface0 },
+        IblScope = { fg = colors.surface2 },
 
         Todo = { fg = colors.mauve, bg = colors.none, style = { 'bold' } },
         ['@comment.error'] = { fg = colors.red, bg = colors.none, style = { 'bold' } },
