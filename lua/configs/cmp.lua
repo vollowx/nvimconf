@@ -113,9 +113,11 @@ cmp.setup({
     },
   },
   formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
+    fields = { 'abbr', 'kind', 'menu' },
     format = function(entry, cmp_item)
-      cmp_item.kind = entry.source.name == 'calc' and icons.ui.Calculator or icons.kinds[cmp_item.kind] or '  '
+      cmp_item.kind = ' ' .. (entry.source.name == 'calc' and icons.ui.Calculator .. 'Calculator'
+        or entry.source.name == 'cmdline' and icons.ui.Cmd .. 'Command'
+        or icons.kinds[cmp_item.kind] .. cmp_item.kind or '')
       return cmp_item
     end,
   },

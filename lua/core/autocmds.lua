@@ -170,21 +170,3 @@ augroup('AutoCreateDir', {
     end,
   },
 })
-
-augroup('AutoToggleCmdline', {
-  'CmdlineEnter',
-  {
-    desc = 'Auto show cmdline when focused',
-    callback = function()
-      vim.opt.cmdheight = 1
-    end
-  }
-}, {
-  'CmdlineLeave',
-  {
-    desc = 'Auto hide cmdline when not focused',
-    callback = function()
-      vim.opt.cmdheight = 0
-    end
-  }
-})

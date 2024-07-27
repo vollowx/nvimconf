@@ -99,16 +99,11 @@ require('catppuccin').setup({
   highlight_overrides = {
     all = function(colors)
       return {
-        ["@character.special.gitignore"] = { fg = colors.mauve }, -- catppuccin/nvim#736
         FzfLuaBorder = { link = 'WinSeparator' },
 
         NormalFloat = { bg = colors.mantle },
         FloatBorder = { bg = colors.mantle, fg = colors.mantle },
         CursorLineNr = { fg = colors.mauve, style = { 'bold' } },
-        PmenuSel = { bg = colors.surface0, fg = '' },
-        Pmenu = { bg = colors.mantle },
-        PmenuSbar = { bg = colors.crust },
-        PmenuThumb = { bg = colors.surface0 },
         WinSeparator = { fg = colors.surface1 },
         CmpGhostText = { link = 'Comment' },
         Folded = { link = 'Comment' },

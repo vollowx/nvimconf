@@ -18,12 +18,6 @@ return {
   },
 
   {
-    'echasnovski/mini.clue',
-    event = { 'CursorHold', 'CursorHoldI' },
-    config = load_pkg('mini-clue'),
-  },
-
-  {
     'tzachar/local-highlight.nvim',
     event = 'VeryLazy',
     config = load_pkg('local-highlight'),

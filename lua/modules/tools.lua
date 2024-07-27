@@ -16,12 +16,6 @@ return {
   },
 
   {
-    'echasnovski/mini.bracketed',
-    config = load_pkg('mini-bracketed'),
-    keys = { '[', ']' },
-  },
-
-  {
     'echasnovski/mini.bufremove',
     keys = {
       {
@@ -67,9 +61,6 @@ return {
     event = 'VeryLazy',
     cmd = { 'Oil' },
     config = load_pkg('oil'),
-    keys = {
-      { '-', '<Cmd>Oil<CR>', desc = 'Open parent directory' },
-    },
   },
 
   {

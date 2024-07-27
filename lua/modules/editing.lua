@@ -1,14 +1,10 @@
 return {
   {
-    'echasnovski/mini.align',
-    config = load_pkg('mini-align'),
-    keys = { { 'gl', mode = { 'n', 'x' } }, { 'gL', mode = { 'n', 'x' } } },
-  },
-
-  {
-    'echasnovski/mini.surround',
-    event = 'VeryLazy',
-    config = load_pkg('mini-surround'),
+    'junegunn/vim-easy-align',
+    lazy = false,
+    keys = {
+      { 'ga', '<Plug>(EasyAlign)', mode = { 'n', 'x' } }
+    }
   },
 
   {
