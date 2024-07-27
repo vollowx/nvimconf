@@ -19,4 +19,11 @@ return {
     ft = { 'markdown', 'norg', 'rmd', 'org' },
     config = load_pkg('headlines', true),
   },
+
+  {
+    'nvim-neorg/neorg',
+    build = ':Neorg sync-parsers',
+    event = { 'VeryLazy' },
+    config = load_pkg('neorg')
+  }
 }
