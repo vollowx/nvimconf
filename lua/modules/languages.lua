@@ -24,6 +24,7 @@ return {
     'nvim-neorg/neorg',
     build = ':Neorg sync-parsers',
     event = { 'VeryLazy' },
+    ft = { 'norg' },
     config = load_pkg('neorg')
   }
 }

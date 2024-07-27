@@ -84,7 +84,7 @@ return {
 
   {
     'bekaboo/dropbar.nvim',
-    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile', 'BufEnter' },
+    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
     config = load_pkg('dropbar'),
   },
 
