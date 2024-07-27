@@ -136,8 +136,18 @@ _G.icons                = {
 vim.g.has_ui = #vim.api.nvim_list_uis() > 0
 vim.g.has_gui = vim.g.has_ui and (vim.env.DISPLAY ~= nil or vim.env.WAYLAND_DISPLAY ~= nil)
 
+vim.keymap.set({ 'n', 'x' }, '<Space>', '<Ignore>')
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 require('core.options')
-require('core.keymaps')
-require('core.autocmds')
-require('core.commands')
 require('core.packages')
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'VeryLazy',
+  callback = function ()
+    require('core.autocmds')
+    require('core.keymaps')
+    require('core.commands')
+  end
+})

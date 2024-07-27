@@ -331,11 +331,11 @@ end
 ---@type table<string, string>
 local components = {
   align        = [[%=]],
-  diag         = [[%{%v:lua.require'plugins.statusline'.diag()%}]],
-  fname        = [[%{%v:lua.require'plugins.statusline'.fname()%}]],
-  info         = [[%{%v:lua.require'plugins.statusline'.info()%}]],
-  lsp_progress = [[%{%v:lua.require'plugins.statusline'.lsp_progress()%}]],
-  mode         = [[%{%v:lua.require'plugins.statusline'.mode()%}]],
+  diag         = [[%{%v:lua.require'plugin.statusline'.diag()%}]],
+  fname        = [[%{%v:lua.require'plugin.statusline'.fname()%}]],
+  info         = [[%{%v:lua.require'plugin.statusline'.info()%}]],
+  lsp_progress = [[%{%v:lua.require'plugin.statusline'.lsp_progress()%}]],
+  mode         = [[%{%v:lua.require'plugin.statusline'.mode()%}]],
   padding      = [[ ]],
   pos          = [[%{%&ru?"%l:%c ":""%}]],
   truncate     = [[%<]],

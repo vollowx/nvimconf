@@ -1,9 +1,4 @@
 local map = vim.keymap.set
-local unmap = vim.keymap.del
-
-map({ 'n', 'x' }, '<Space>', '<Ignore>')
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 
 -- stylua: ignore start
 map({ 'n', 'x' }, 'j', 'v:count ? "j" : "gj"', { expr = true })
@@ -38,21 +33,3 @@ map('t', '<M-j>', '<Cmd>wincmd j<CR>', { replace_keycodes = false })
 map('t', '<M-k>', '<Cmd>wincmd k<CR>', { replace_keycodes = false })
 map('t', '<M-l>', '<Cmd>wincmd l<CR>', { replace_keycodes = false })
 -- stylua: ignore end
-
-unmap('n', 'gra')
-unmap('n', 'grn')
-unmap('n', 'grr')
-map('n', 'gr', vim.lsp.buf.rename, { desc = 'Rename' })
-map('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Open diagnostic window' })
-
-if vim.g.neovide then
-  local change_scale_factor = function(delta)
-    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
-  end
-  map('n', '<C-=>', function()
-    change_scale_factor(1.25)
-  end)
-  map('n', '<C-->', function()
-    change_scale_factor(1 / 1.25)
-  end)
-end

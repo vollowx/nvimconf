@@ -91,13 +91,3 @@ g.loaded_logiPat         = 1
 g.loaded_rrhelper        = 1
 g.loaded_netrwPlugin     = 1
 -- stylua: ignore end
-
-if vim.g.neovide then
-  o.guifont = 'monospace:h12'
-  g.neovide_padding_top = 16
-  g.neovide_padding_bottom = 16
-  g.neovide_padding_right = 16
-  g.neovide_padding_left = 16
-  g.neovide_floating_shadow = false
-  g.neovide_scale_factor = 1.0
-end

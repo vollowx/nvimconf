@@ -1,5 +1,10 @@
 return {
   {
+    'romainl/vim-cool',
+    lazy = false,
+  },
+
+  {
     'DanilaMihailov/beacon.nvim',
     event = { 'CursorMoved', 'WinEnter', 'FocusGained' },
     config = load_pkg('beacon'),

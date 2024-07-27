@@ -11,6 +11,10 @@ local function term_set_local_keymaps_and_opts(buf)
   vim.opt_local.spell = false
   vim.opt_local.statuscolumn = ''
   vim.opt_local.signcolumn = 'no'
+  if vim.fn.win_gettype() == 'popup' then
+    vim.opt_local.scrolloff = 0
+    vim.opt_local.sidescrolloff = 0
+  end
   vim.cmd.startinsert()
 end
 
@@ -62,16 +66,14 @@ local function setup(buf)
     group = groupid,
     desc = 'Recover inseart mode when entering terminal buffer.',
     callback = function(info)
-      if vim.bo[info.buf].bt == 'terminal' and vim.b[info.buf].termode == 't' then
+      if
+        vim.bo[info.buf].bt == 'terminal'
+        and vim.b[info.buf].termode == 't'
+      then
         vim.cmd.startinsert()
       end
     end,
   })
 end
 
-vim.api.nvim_create_autocmd('TermOpen', {
-  group = vim.api.nvim_create_augroup('TermSetup', {}),
-  callback = function(info)
-    setup(info.buf)
-  end,
-})
+return { setup = setup }
