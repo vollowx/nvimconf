@@ -2,7 +2,7 @@ local o = vim.opt
 local g = vim.g
 
 -- stylua: ignore start
-o.cursorlineopt  = 'number'
+o.cursorlineopt  = 'both'
 o.cursorline     = true
 o.foldlevelstart = 99
 o.foldtext       = ''
@@ -34,7 +34,7 @@ o.expandtab      = true
 o.autoindent     = true
 o.autowriteall   = true
 o.virtualedit    = 'block'
-o.completeopt    = 'menu,menuone,noinsert,fuzzy,popup'
+o.completeopt    = 'menuone,noinsert,popup'
 o.jumpoptions    = 'stack,view'
 -- stylua: ignore end
 

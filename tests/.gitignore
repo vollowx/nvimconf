@@ -1,9 +1,0 @@
-path/to/file
-
-*.extension
-
-dir/**file.*
-
-a/*jj/c/d**g
-
-/abc??ghjk

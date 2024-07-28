@@ -17,7 +17,7 @@ local function has_word_before(triggerCharacters)
   local line_text = ffi.string(ffi.C.ml_get(lnum))
   local char_before_cursor = line_text:sub(col, col)
   return char_before_cursor:match('[%w_]')
-    and not vim.tbl_contains(triggerCharacters, char_before_cursor)
+    and not vim.list_contains(triggerCharacters, char_before_cursor)
 end
 
 -- hack can completion on any triggerCharacters
@@ -81,11 +81,10 @@ au(InsertCharPre, {
       return
     end
     local bufnr = args.buf
-    if
-      not vim.iter({ 'terminal', 'prompt', 'help' }):any(function(v)
-        return v == vim.bo[bufnr].buftype
-      end)
-    then
+    local ok = vim.iter({ 'terminal', 'prompt', 'help' }):any(function(v)
+      return v == vim.bo[bufnr].buftype
+    end)
+    if ok then
       return
     end
     local char = vim.v.char
