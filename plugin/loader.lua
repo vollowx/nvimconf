@@ -19,3 +19,11 @@ vim.api.nvim_create_autocmd('TermOpen', {
     require('plugin.term').setup(info.buf)
   end,
 })
+
+-- completion
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'VeryLazy',
+  callback = function()
+    require('plugin.completion')
+  end,
+})

@@ -48,8 +48,13 @@ function M.start(config, opts)
   local name = cmd_exec
   local bufname = vim.api.nvim_buf_get_name(0)
   local root_dir = vim.fn.fnamemodify(
-    vim.fs.root(bufname, vim.list_extend(config.root_patterns or {}, M.default_config.root_patterns or {}))
-      or vim.fs.dirname(bufname),
+    vim.fs.root(
+      bufname,
+      vim.list_extend(
+        config.root_patterns or {},
+        M.default_config.root_patterns or {}
+      )
+    ) or vim.fs.dirname(bufname),
     '%:p'
   )
 
@@ -75,7 +80,9 @@ end
 ---@param client_or_id integer|vim.lsp.Client
 ---@param opts lsp_soft_stop_opts_t?
 function M.soft_stop(client_or_id, opts)
-  local client = type(client_or_id) == 'number' and vim.lsp.get_client_by_id(client_or_id) or client_or_id --[[@as vim.lsp.Client]]
+  local client = type(client_or_id) == 'number'
+      and vim.lsp.get_client_by_id(client_or_id)
+    or client_or_id --[[@as vim.lsp.Client]]
   if not client then
     return
   end
@@ -104,7 +111,9 @@ end
 ---Restart and reattach LSP client
 ---@param client_or_id integer|vim.lsp.Client
 function M.restart(client_or_id)
-  local client = type(client_or_id) == 'number' and vim.lsp.get_client_by_id(client_or_id) or client_or_id --[[@as vim.lsp.Client]]
+  local client = type(client_or_id) == 'number'
+      and vim.lsp.get_client_by_id(client_or_id)
+    or client_or_id --[[@as vim.lsp.Client]]
   if not client then
     return
   end

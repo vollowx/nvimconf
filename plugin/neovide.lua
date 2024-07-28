@@ -1,4 +1,6 @@
-if not vim.g.neovide then return end
+if not vim.g.neovide then
+  return
+end
 
 vim.o.guifont = 'monospace:h12'
 vim.g.neovide_padding_top = 16

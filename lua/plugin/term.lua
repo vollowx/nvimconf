@@ -67,8 +67,7 @@ local function setup(buf)
     desc = 'Recover inseart mode when entering terminal buffer.',
     callback = function(info)
       if
-        vim.bo[info.buf].bt == 'terminal'
-        and vim.b[info.buf].termode == 't'
+        vim.bo[info.buf].bt == 'terminal' and vim.b[info.buf].termode == 't'
       then
         vim.cmd.startinsert()
       end

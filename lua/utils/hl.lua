@@ -35,7 +35,14 @@ function M.buf_add_hl(buffer, ns_id, hl_group, line, col_start, col_end)
   if vim.fn.hlexists(hl_group) == 0 then
     return
   end
-  vim.api.nvim_buf_add_highlight(buffer, ns_id, hl_group, line, col_start, col_end)
+  vim.api.nvim_buf_add_highlight(
+    buffer,
+    ns_id,
+    hl_group,
+    line,
+    col_start,
+    col_end
+  )
 end
 
 ---Highlight text in buffer, clear previous highlight if any exists
@@ -50,8 +57,10 @@ function M.range_single(buf, hlgroup, range)
   vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
   if range then
     for linenr = range.start.line, range['end'].line do
-      local start_col = linenr == range.start.line and range.start.character or 0
-      local end_col = linenr == range['end'].line and range['end'].character or -1
+      local start_col = linenr == range.start.line and range.start.character
+        or 0
+      local end_col = linenr == range['end'].line and range['end'].character
+        or -1
       M.buf_add_hl(buf, ns, hlgroup, linenr, start_col, end_col)
     end
   end
@@ -224,7 +233,8 @@ end
 ---@param n_digits integer? number of digits used for the hex code
 ---@return string hex
 function M.dec2hex(int, n_digits)
-  return not n_digits and string.format('%x', int) or string.format('%0' .. n_digits .. 'x', int)
+  return not n_digits and string.format('%x', int)
+    or string.format('%0' .. n_digits .. 'x', int)
 end
 
 ---Convert a hex color to rgb color

@@ -58,14 +58,20 @@ return {
   {
     'stevearc/oil.nvim',
     dependencies = { 'nvim-web-devicons' },
-    event = 'VeryLazy',
     cmd = { 'Oil' },
+    init = function()
+      if vim.fn.isdirectory(vim.fn.argv()[1]) == 1 then
+        vim.schedule(function()
+          vim.cmd.Oil()
+        end)
+      end
+    end,
     config = load_pkg('oil'),
   },
 
   {
     'lewis6991/gitsigns.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = 'BufEnter */*',
     config = load_pkg('gitsigns'),
     keys = {
       { '<Leader>g', '<Nop>', desc = 'Git...' },

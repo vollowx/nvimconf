@@ -25,6 +25,6 @@ return {
     build = ':Neorg sync-parsers',
     event = { 'VeryLazy' },
     ft = { 'norg' },
-    config = load_pkg('neorg')
-  }
+    config = load_pkg('neorg'),
+  },
 }

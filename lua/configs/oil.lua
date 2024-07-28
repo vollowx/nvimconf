@@ -61,7 +61,11 @@ local function end_preview(oil_win)
   oil_win = oil_win or vim.api.nvim_get_current_win()
   local preview_win = preview_wins[oil_win]
   local preview_buf = preview_bufs[oil_win]
-  if preview_win and vim.api.nvim_win_is_valid(preview_win) and vim.fn.winbufnr(preview_win) == preview_buf then
+  if
+    preview_win
+    and vim.api.nvim_win_is_valid(preview_win)
+    and vim.fn.winbufnr(preview_win) == preview_buf
+  then
     vim.api.nvim_win_close(preview_win, true)
   end
   if preview_buf and vim.api.nvim_win_is_valid(preview_buf) then
@@ -133,9 +137,18 @@ local function preview()
   local preview_win_width = vim.api.nvim_win_get_width(preview_win)
   local add_syntax = false
   local lines = {}
-  lines = stat.type == 'directory' and vim.fn.systemlist('ls -lhA ' .. vim.fn.shellescape(fpath))
-    or stat.size == 0 and nopreview('Empty file', preview_win_height, preview_win_width)
-    or stat.size > preview_max_fsize and nopreview('File too large to preview', preview_win_height, preview_win_width)
+  lines = stat.type == 'directory'
+      and vim.fn.systemlist('ls -lhA ' .. vim.fn.shellescape(fpath))
+    or stat.size == 0 and nopreview(
+      'Empty file',
+      preview_win_height,
+      preview_win_width
+    )
+    or stat.size > preview_max_fsize and nopreview(
+      'File too large to preview',
+      preview_win_height,
+      preview_win_width
+    )
     or not vim.fn.system({ 'file', fpath }):match('text') and nopreview(
       'Binary file, no preview available',
       preview_win_height,
@@ -365,7 +378,13 @@ oil.setup({
         local entry_path = vim.fs.joinpath(dir, entry.name)
         vim.fn.setreg('"', entry_path)
         vim.fn.setreg(vim.v.register, entry_path)
-        vim.notify(string.format("[oil] yanked '%s' to register '%s'", entry_path, vim.v.register))
+        vim.notify(
+          string.format(
+            "[oil] yanked '%s' to register '%s'",
+            entry_path,
+            vim.v.register
+          )
+        )
       end,
     },
   },

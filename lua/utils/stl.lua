@@ -10,7 +10,8 @@ function M.hl(str, hl, restore, force)
   restore = restore == nil or restore
   -- Don't add highlight in tty to get a cleaner UI
   hl = (vim.g.has_gui or force) and hl or ''
-  return restore and table.concat({ '%#', hl, '#', str or '', '%*' }) or table.concat({ '%#', hl, '#', str or '' })
+  return restore and table.concat({ '%#', hl, '#', str or '', '%*' })
+    or table.concat({ '%#', hl, '#', str or '' })
 end
 
 ---Make a winbar string clickable

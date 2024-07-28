@@ -115,10 +115,26 @@ require('catppuccin').setup({
         IblScope = { fg = colors.surface2 },
 
         Todo = { fg = colors.mauve, bg = colors.none, style = { 'bold' } },
-        ['@comment.error'] = { fg = colors.red, bg = colors.none, style = { 'bold' } },
-        ['@comment.warning'] = { fg = colors.yellow, bg = colors.none, style = { 'bold' } },
-        ['@comment.note'] = { fg = colors.blue, bg = colors.none, style = { 'bold' } },
-        ['@comment.todo'] = { fg = colors.mauve, bg = colors.none, style = { 'bold' } },
+        ['@comment.error'] = {
+          fg = colors.red,
+          bg = colors.none,
+          style = { 'bold' },
+        },
+        ['@comment.warning'] = {
+          fg = colors.yellow,
+          bg = colors.none,
+          style = { 'bold' },
+        },
+        ['@comment.note'] = {
+          fg = colors.blue,
+          bg = colors.none,
+          style = { 'bold' },
+        },
+        ['@comment.todo'] = {
+          fg = colors.mauve,
+          bg = colors.none,
+          style = { 'bold' },
+        },
 
         -- carbon
         Structure = { fg = colors.pink },

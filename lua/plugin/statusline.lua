@@ -23,8 +23,12 @@ local function get_diag_sign_text(severity)
     and diag_config.signs
     and type(diag_config.signs) == 'table'
     and diag_config.signs.text
-  return signs_text and (signs_text[severity] or signs_text[diag_severity_map[severity]])
-    or (diag_signs_default_text[severity] or diag_signs_default_text[diag_severity_map[severity]])
+  return signs_text
+      and (signs_text[severity] or signs_text[diag_severity_map[severity]])
+    or (
+      diag_signs_default_text[severity]
+      or diag_signs_default_text[diag_severity_map[severity]]
+    )
 end
 
 ---From `vim.lsp.status()`
@@ -37,7 +41,9 @@ local function get_lsp_status()
       --- @cast progress {token: lsp.ProgressToken, value: lsp.LSPAny}
       local value = progress.value
       if type(value) == 'table' and value.kind then
-        local message = value.message and (value.title .. ': ' .. value.message) or value.title
+        local message = value.message
+            and (value.title .. ': ' .. value.message)
+          or value.title
         messages[#messages + 1] = message
       end
       -- else: Doesn't look like work done progress and can be in any format
@@ -92,7 +98,8 @@ local modes = {
 function statusline.mode()
   local hl = vim.bo.mod and 'StatusLineHeaderModified' or 'StatusLineHeader'
   local mode = vim.fn.mode()
-  local mode_str = (mode == 'n' and (vim.bo.ro or not vim.bo.ma)) and 'RO' or modes[mode]
+  local mode_str = (mode == 'n' and (vim.bo.ro or not vim.bo.ma)) and 'RO'
+    or modes[mode]
   return utils.stl.hl(string.format(' %s ', mode_str), hl) .. ' '
 end
 
@@ -121,7 +128,8 @@ end
 function statusline.gitdiff()
   -- Integration with gitsigns.nvim
   ---@diagnostic disable-next-line: undefined-field
-  local diff = vim.b.gitsigns_status_dict or { added = 0, changed = 0, removed = 0 }
+  local diff = vim.b.gitsigns_status_dict
+    or { added = 0, changed = 0, removed = 0 }
   local added = diff.added or 0
   local changed = diff.changed or 0
   local removed = diff.removed or 0
@@ -140,7 +148,8 @@ end
 ---@return string
 function statusline.branch()
   ---@diagnostic disable-next-line: undefined-field
-  local branch = vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.head or ''
+  local branch = vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.head
+    or ''
   return branch == '' and '' or '#' .. branch
 end
 
@@ -165,7 +174,8 @@ function statusline.info()
   end
   add_section(statusline.branch())
   add_section(statusline.gitdiff())
-  return vim.tbl_isempty(info) and '' or string.format(' (%s) ', table.concat(info, ', '))
+  return vim.tbl_isempty(info) and ''
+    or string.format(' (%s) ', table.concat(info, ', '))
 end
 
 vim.api.nvim_create_autocmd('DiagnosticChanged', {
@@ -175,7 +185,8 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
     local b = vim.b[info.buf]
     local diag_cnt_cache = { 0, 0, 0, 0 }
     for _, diagnostic in ipairs(info.data.diagnostics) do
-      diag_cnt_cache[diagnostic.severity] = diag_cnt_cache[diagnostic.severity] + 1
+      diag_cnt_cache[diagnostic.severity] = diag_cnt_cache[diagnostic.severity]
+        + 1
     end
     b.diag_str_cache = nil
     b.diag_cnt_cache = diag_cnt_cache
@@ -195,7 +206,10 @@ function statusline.diag()
     if cnt > 0 then
       local icon_text = get_diag_sign_text(serverity_nr)
       local icon_hl = 'StatusLineDiagnostic' .. severity
-      str = str .. (str == '' and '' or ' ') .. utils.stl.hl(icon_text, icon_hl) .. cnt
+      str = str
+        .. (str == '' and '' or ' ')
+        .. utils.stl.hl(icon_text, icon_hl)
+        .. cnt
     end
   end
   if str:find('%S') then
@@ -238,7 +252,11 @@ vim.api.nvim_create_autocmd('LspProgress', {
   group = groupid,
   callback = function(info)
     if spinner_timer then
-      spinner_timer:start(spinner_progress_keep, spinner_progress_keep, vim.schedule_wrap(vim.cmd.redrawstatus))
+      spinner_timer:start(
+        spinner_progress_keep,
+        spinner_progress_keep,
+        vim.schedule_wrap(vim.cmd.redrawstatus)
+      )
     end
 
     local id = info.data.client_id
@@ -300,16 +318,21 @@ function statusline.lsp_progress()
   local now = vim.uv.now()
   ---@return boolean
   local function allow_changing_state()
-    return not vim.b.spinner_state_changed or now - vim.b.spinner_state_changed > spinner_status_keep
+    return not vim.b.spinner_state_changed
+      or now - vim.b.spinner_state_changed > spinner_status_keep
   end
 
-  if #server_ids == 1 and server_info_in_progress[server_ids[1]].type == 'end' then
+  if
+    #server_ids == 1 and server_info_in_progress[server_ids[1]].type == 'end'
+  then
     if vim.b.spinner_icon ~= spinner_icon_done and allow_changing_state() then
       vim.b.spinner_state_changed = now
       vim.b.spinner_icon = spinner_icon_done
     end
   else
-    local spinner_icon_progress = spinner_icons[math.ceil(now / spinner_progress_keep) % #spinner_icons + 1]
+    local spinner_icon_progress = spinner_icons[math.ceil(
+      now / spinner_progress_keep
+    ) % #spinner_icons + 1]
     if vim.b.spinner_icon ~= spinner_icon_done then
       vim.b.spinner_icon = spinner_icon_progress
     elseif allow_changing_state() then
@@ -364,13 +387,17 @@ local stl_nc = table.concat({
 ---Get statusline string
 ---@return string
 function statusline.get()
-  return vim.g.statusline_winid == vim.api.nvim_get_current_win() and stl or stl_nc
+  return vim.g.statusline_winid == vim.api.nvim_get_current_win() and stl
+    or stl_nc
 end
 
-vim.api.nvim_create_autocmd({ 'FileChangedShellPost', 'DiagnosticChanged', 'LspProgress' }, {
-  group = groupid,
-  command = 'redrawstatus',
-})
+vim.api.nvim_create_autocmd(
+  { 'FileChangedShellPost', 'DiagnosticChanged', 'LspProgress' },
+  {
+    group = groupid,
+    command = 'redrawstatus',
+  }
+)
 
 ---Set default highlight groups for statusline components
 ---@return  nil
@@ -398,7 +425,10 @@ local function set_default_hlgroups()
   sethl('StatusLineLspProgressMsg', { fg = 'NonText' })
   sethl('StatusLineLspProgressIcon', { fg = 'Constant' })
   sethl('StatusLineHeader', { fg = 'Keyword', bg = 'CursorLine', bold = true })
-  sethl('StatusLineHeaderModified', { fg = 'Function', bg = 'CursorLine', bold = true })
+  sethl(
+    'StatusLineHeaderModified',
+    { fg = 'Function', bg = 'CursorLine', bold = true }
+  )
 end
 set_default_hlgroups()
 

@@ -8,6 +8,7 @@ o.foldlevelstart = 99
 o.foldtext       = ''
 o.helpheight     = 10
 o.showmode       = false
+o.shortmess      = 'aoOTIcF'
 o.mousemoveevent = true
 o.number         = true
 o.ruler          = true
@@ -33,7 +34,7 @@ o.expandtab      = true
 o.autoindent     = true
 o.autowriteall   = true
 o.virtualedit    = 'block'
-o.completeopt    = 'menuone'
+o.completeopt    = 'menu,menuone,noinsert,fuzzy,popup'
 o.jumpoptions    = 'stack,view'
 -- stylua: ignore end
 
