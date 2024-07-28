@@ -59,19 +59,36 @@ return {
     'stevearc/oil.nvim',
     dependencies = { 'nvim-web-devicons' },
     cmd = { 'Oil' },
-    init = function()
-      if vim.fn.isdirectory(vim.fn.argv()[1]) == 1 then
-        vim.schedule(function()
-          vim.cmd.Oil()
-        end)
-      end
+    init = function() -- Load oil on startup only when editing a directory
+      vim.g.loaded_fzf_file_explorer = 1
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+      vim.api.nvim_create_autocmd('BufWinEnter', {
+        nested = true,
+        callback = function(info)
+          local path = info.file
+          if path == '' then
+            return
+          end
+          local stat = vim.uv.fs_stat(path)
+          if stat and stat.type == 'directory' then
+            vim.api.nvim_del_autocmd(info.id)
+            require('oil')
+            vim.cmd.edit({
+              bang = true,
+              mods = { keepjumps = true },
+            })
+            return true
+          end
+        end,
+      })
     end,
     config = load_pkg('oil'),
   },
 
   {
     'lewis6991/gitsigns.nvim',
-    event = 'BufEnter */*',
+    event = 'BufReadPre',
     config = load_pkg('gitsigns'),
     keys = {
       { '<Leader>g', '<Nop>', desc = 'Git...' },
@@ -86,12 +103,6 @@ return {
         desc = 'Line blame',
       },
     },
-  },
-
-  {
-    'bekaboo/dropbar.nvim',
-    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
-    config = load_pkg('dropbar'),
   },
 
   {
