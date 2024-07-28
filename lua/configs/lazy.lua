@@ -4,7 +4,7 @@ local config = {
   defaults = { lazy = true },
   checker = { enabled = false },
   change_detection = { notify = false },
-  install = { colorscheme = { settings.ui.colorscheme } },
+  install = { colorscheme = { 'catppuccin' } },
   ui = {
     backdrop = 100,
     size = { width = 0.7, height = 0.74 },

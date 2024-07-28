@@ -36,6 +36,7 @@ o.autowriteall   = true
 o.virtualedit    = 'block'
 o.completeopt    = 'menuone,noinsert,popup'
 o.jumpoptions    = 'stack,view'
+o.statusline     = [[%!v:lua.require'core._internal.statusline'.get()]]
 -- stylua: ignore end
 
 o.backup = true

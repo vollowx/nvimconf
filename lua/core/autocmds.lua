@@ -175,3 +175,39 @@ augroup('AutoCreateDir', {
     end,
   },
 })
+
+augroup('TerminalSettings', {
+  'TermOpen',
+  {
+    desc = 'Set terminal settings.',
+    callback = function(info)
+      require('core._internal.terminal').setup(info.buf)
+    end,
+  },
+})
+
+augroup('LspSettings', {
+  'LspAttach',
+  {
+    desc = 'Set LSP settings.',
+    callback = function()
+      require('core._internal.lsp').setup()
+    end,
+  },
+}, {
+  'LspAttach',
+  {
+    desc = 'Set LSP per buffer settings.',
+    once = true,
+    callback = function(info)
+      vim.opt_local.omnifunc = 'v:lua.vim.lsp.omnifunc'
+      vim.lsp.inlay_hint.enable(true, { bufnr = info.buf })
+      vim.lsp.completion.enable(
+        true,
+        info.data.client_id,
+        info.buf,
+        { autotrigger = true }
+      )
+    end,
+  },
+})
