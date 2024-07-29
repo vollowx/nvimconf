@@ -369,7 +369,6 @@ fzf.setup({
   },
   defaults = {
     headers = {},
-    multiline = 1,
     git_icons = false,
     actions = {
       ['ctrl-]'] = actions.switch_provider,
