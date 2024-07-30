@@ -21,5 +21,5 @@ Benchmark 1: nvim +q
 
 ## Acknowledgements
 
-- [bekaboo/nvim](https://github.com/Bekaboo/nvim) for many plugins and configurations, tree-wide structure, etc
-- [idm1try/dotfiles](https://github.com/idm1try/dotfiles) for the oxocarbon override layer on [catppuccin/nvim](https://github.com/catppuccin/nvim)
+- [bekaboo/nvim](https://github.com/Bekaboo/nvim) (for many plugins and configurations, tree-wide structure, etc)
+- [idm1try/dotfiles](https://github.com/idm1try/dotfiles) (for the oxocarbon override layer on [catppuccin/nvim](https://github.com/catppuccin/nvim))
