@@ -31,7 +31,7 @@ ts_configs.setup({
   modules = {},
   auto_install = true,
   sync_install = false,
-  ignore_install = {},
+  ignore_install = { 'org' },
   ensure_installed = {
     'c',
     'lua',
