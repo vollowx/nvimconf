@@ -1,11 +1,12 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     build = ':TSUpdate',
     event = { 'BufRead', 'BufNewFile', 'VeryLazy' },
     config = load_pkg('treesitter', true),
     dependencies = {
-      'RRethy/nvim-treesitter-endwise',
+      -- 'RRethy/nvim-treesitter-endwise',
       'windwp/nvim-ts-autotag',
     },
   },

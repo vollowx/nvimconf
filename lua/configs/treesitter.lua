@@ -1,4 +1,4 @@
-local ts_configs = require('nvim-treesitter.configs')
+local ts = require('nvim-treesitter')
 
 ---@param buf integer
 ---@return nil
@@ -14,6 +14,7 @@ local function enable_ts_folding(buf)
     local fde = o.fde:get() ---@diagnostic disable-line: undefined-field
     o.fdm = fdm == 'manual' and 'expr' or fdm
     o.fde = fde == '0' and 'nvim_treesitter#foldexpr()' or fde
+    o.indentexpr = 'v.lua:require"nvim-treesitter".indentexpr()'
   end)
 end
 
@@ -27,9 +28,8 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-ts_configs.setup({
-  modules = {},
-  auto_install = true,
+ts.setup({
+  auto_install = false,
   sync_install = false,
   ignore_install = { 'org' },
   ensure_installed = {
@@ -59,15 +59,8 @@ ts_configs.setup({
     'html',
     'javascript',
     'typescript',
-  },
-  highlight = { enable = true },
-  incremental_selection = { enable = false },
-  indent = { enable = true },
 
-  autotag = {
-    enable = true,
-    enable_rename = true,
-    enable_close = true,
-    enable_close_on_slash = true,
+    'gitcommit',
+    'gitignore',
   },
 })
