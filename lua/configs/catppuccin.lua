@@ -98,8 +98,6 @@ require('catppuccin').setup({
   highlight_overrides = {
     all = function(colors)
       return {
-        FzfLuaBorder = { link = 'WinSeparator' },
-
         NormalFloat = { bg = colors.mantle },
         FloatBorder = { bg = colors.mantle, fg = colors.mantle },
         CursorLineNr = { fg = colors.mauve, style = { 'bold' } },

@@ -314,25 +314,26 @@ fzf.setup({
       hidden = 'hidden',
     },
   },
-  hls = {
-    title = 'TelescopeTitle',
-    preview_title = 'TelescopeTitle',
-    -- Builtin preview only
-    cursor = 'Cursor',
-    cursorline = 'TelescopePreviewLine',
-    cursorlinenr = 'TelescopePreviewLine',
-    search = 'IncSearch',
-  },
-  fzf_colors = {
-    ['hl'] = { 'fg', 'TelescopeMatching' },
-    ['fg+'] = { 'fg', 'TelescopeSelection' },
-    ['bg+'] = { 'bg', 'TelescopeSelection' },
-    ['hl+'] = { 'fg', 'TelescopeMatching' },
-    ['info'] = { 'fg', 'TelescopeCounter' },
-    ['prompt'] = { 'fg', 'TelescopePrefix' },
-    ['pointer'] = { 'fg', 'TelescopeSelectionCaret' },
-    ['marker'] = { 'fg', 'TelescopeMultiIcon' },
-  },
+  -- hls = {
+  --   title = 'TelescopeTitle',
+  --   preview_title = 'TelescopeTitle',
+  --   -- Builtin preview only
+  --   cursor = 'Cursor',
+  --   cursorline = 'TelescopePreviewLine',
+  --   cursorlinenr = 'TelescopePreviewLine',
+  --   search = 'IncSearch',
+  -- },
+  fzf_colors = true,
+  -- fzf_colors = {
+  --   ['hl'] = { 'fg', 'TelescopeMatching' },
+  --   ['fg+'] = { 'fg', 'TelescopeSelection' },
+  --   ['bg+'] = { 'bg', 'TelescopeSelection' },
+  --   ['hl+'] = { 'fg', 'TelescopeMatching' },
+  --   ['info'] = { 'fg', 'TelescopeCounter' },
+  --   ['prompt'] = { 'fg', 'TelescopePrefix' },
+  --   ['pointer'] = { 'fg', 'TelescopeSelectionCaret' },
+  --   ['marker'] = { 'fg', 'TelescopeMultiIcon' },
+  -- },
   keymap = {
     -- Overrides default completion completely
     builtin = {
@@ -816,37 +817,3 @@ vim.api.nvim_create_user_command('Tags', fzf.tagstack, {})
 vim.api.nvim_create_user_command('Jumps', fzf.jumps, {})
 vim.api.nvim_create_user_command('Tabs', fzf.tabs, {})
 -- stylua: ignore end
-
----Set telescope default hlgroups for a borderless view
----@return nil
-local function set_default_hlgroups()
-  local hl = utils.hl
-  local hl_norm = hl.get(0, { name = 'Normal', link = false })
-  local hl_special = hl.get(0, { name = 'Special', link = false })
-  hl.set(0, 'FzfLuaBufFlagAlt', {})
-  hl.set(0, 'FzfLuaBufFlagCur', {})
-  hl.set(0, 'FzfLuaBufName', {})
-  hl.set(0, 'FzfLuaBufNr', {})
-  hl.set(0, 'FzfLuaBufLineNr', { link = 'LineNr' })
-  hl.set(0, 'FzfLuaCursor', { link = 'None' })
-  hl.set(0, 'FzfLuaHeaderBind', { link = 'Special' })
-  hl.set(0, 'FzfLuaHeaderText', { link = 'Special' })
-  hl.set(0, 'FzfLuaTabMarker', { link = 'Keyword' })
-  hl.set(0, 'FzfLuaTabTitle', { link = 'Title' })
-  hl.set_default(0, 'TelescopeSelection', { link = 'Visual' })
-  hl.set_default(0, 'TelescopePrefix', { link = 'Operator' })
-  hl.set_default(0, 'TelescopeCounter', { link = 'LineNr' })
-  hl.set_default(0, 'TelescopeTitle', {
-    fg = hl_norm.bg,
-    bg = hl_special.fg,
-    bold = true,
-  })
-end
-
-set_default_hlgroups()
-
-vim.api.nvim_create_autocmd('ColorScheme', {
-  group = vim.api.nvim_create_augroup('FzfLuaSetDefaultHlgroups', {}),
-  desc = 'Set default hlgroups for fzf-lua.',
-  callback = set_default_hlgroups,
-})

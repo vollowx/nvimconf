@@ -5,6 +5,7 @@ local config = {
   checker = { enabled = false },
   change_detection = { notify = false },
   install = { colorscheme = { 'catppuccin' } },
+  dev = { path = '~/Documents' },
   ui = {
     backdrop = 100,
     size = { width = 0.7, height = 0.74 },

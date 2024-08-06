@@ -5,6 +5,8 @@ _G.settings = {
     border = 'solid',
     border_preview = 'solid',
     border_input = 'rounded',
+    background = 'dark',
+    colorscheme = 'catppuccin',
   },
 }
 
@@ -132,7 +134,9 @@ _G.icons                = {
     TriangleUp          = '▲ ',
   },
 }
+-- stylua: ignore end
 
+-- Setup {{{
 vim.g.has_ui = #vim.api.nvim_list_uis() > 0
 vim.g.has_gui = vim.g.has_ui and (vim.env.DISPLAY ~= nil or vim.env.WAYLAND_DISPLAY ~= nil)
 
@@ -146,6 +150,8 @@ require('core.autocmds')
 require('core.keymaps')
 require('core.commands')
 
+vim.go.bg = settings.ui.background
+
 if not vim.g.has_gui then
   if vim.g.has_ui then
     vim.cmd.colorscheme('default')
@@ -153,9 +159,8 @@ if not vim.g.has_gui then
   return
 end
 
-vim.go.bg = 'dark'
-
 vim.cmd.colorscheme({
-  args = { 'catppuccin' },
+  args = { settings.ui.colorscheme },
   mods = { emsg_silent = true },
 })
+-- }}}
