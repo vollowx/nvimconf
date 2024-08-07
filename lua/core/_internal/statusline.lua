@@ -106,21 +106,21 @@ end
 ---Get file name
 ---@return string
 function statusline.fname()
-  local str = '%t'
+  local bname = '%t' -- TODO: Use Neovim API to get buffer name
 
   if vim.bo.filetype == 'oil' then
-    str = require('oil').get_current_dir()
+    bname = require('oil').get_current_dir()
   end
 
   if vim.bo.filetype == 'lazy' then
-    str = 'Packages'
+    bname = 'Packages'
   end
 
   if vim.bo.filetype == 'lspinfo' then
-    str = 'LSP Servers'
+    bname = 'LSP Servers'
   end
 
-  return str
+  return bname
 end
 
 ---Get diff stats for current buffer
