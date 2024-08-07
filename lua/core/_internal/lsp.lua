@@ -252,6 +252,4 @@ local function setup()
   setup_keymaps()
 end
 
-return {
-  setup = setup,
-}
+return { setup = setup }
