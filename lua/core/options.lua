@@ -2,13 +2,12 @@ local o = vim.opt
 local g = vim.g
 
 -- stylua: ignore start
-o.cursorlineopt  = 'both'
+o.cursorlineopt  = 'number'
 o.cursorline     = true
 o.foldlevelstart = 99
 o.foldtext       = ''
 o.helpheight     = 10
 o.showmode       = false
-o.shortmess      = 'aoOTIcF'
 o.mousemoveevent = true
 o.number         = true
 o.ruler          = true
