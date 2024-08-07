@@ -51,6 +51,21 @@ require('catppuccin').setup({
 
         IblIndent = { fg = colors.surface0 },
         IblScope = { fg = colors.surface2 },
+
+        FzfLuaNormal = { link = 'NormalFloat' },
+        FzfLuaBorder = { link = 'FloatBorder' },
+        FzfLuaTitle = { link = 'FloatTitle' },
+        FzfLuaHeaderBind = { fg = colors.yellow },
+        FzfLuaHeaderText = { fg = colors.peach },
+        FzfLuaPathColNr = { fg = colors.blue },
+        FzfLuaPathLineNr = { fg = colors.green },
+        FzfLuaBufName = { fg = colors.mauve },
+        FzfLuaBufNr = { fg = colors.yellow },
+        FzfLuaBufFlagCur = { fg = colors.peach },
+        FzfLuaBufFlagAlt = { fg = colors.blue },
+        FzfLuaTabTitle = { fg = colors.sky },
+        FzfLuaTabMarker = { fg = colors.yellow },
+        FzfLuaLiveSym = { fg = colors.peach },
       }
     end,
   },
