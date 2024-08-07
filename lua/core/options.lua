@@ -75,6 +75,13 @@ if g.has_gui then
   })
 end
 
+-- Spell check
+vim.opt.spell = true
+vim.opt.spellcapcheck = ''
+vim.opt.spelllang = 'en,cjk'
+vim.opt.spelloptions = 'camel'
+vim.opt.spellsuggest = 'best,9'
+
 -- stylua: ignore start
 g.loaded_gzip            = 1
 g.loaded_tar             = 1
