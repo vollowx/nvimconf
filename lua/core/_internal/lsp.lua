@@ -80,25 +80,28 @@ local function setup_keymaps()
 
   local c = utils.keymap.count_wrap
   ---@param direction 'prev'|'next'
-  ---@param level 'ERROR'|'WARN'|'INFO'|'HINT'
+  ---@param level ('ERROR'|'WARN'|'INFO'|'HINT')?
   ---@return function
-  local function diag_goto(direction, level)
+  local function diag_jump(direction, level)
     return function()
-      vim.diagnostic['goto_' .. direction]({
+      vim.diagnostic.jump(level and {
+        count = direction == 'next' and 1 or -1,
         severity = vim.diagnostic.severity[level],
+      } or {
+        count = direction == 'next' and 1 or -1,
       })
     end
   end
-  vim.keymap.set({ 'n', 'x' }, '[d', c(vim.diagnostic.goto_prev))
-  vim.keymap.set({ 'n', 'x' }, ']d', c(vim.diagnostic.goto_next))
-  vim.keymap.set({ 'n', 'x' }, '[e', c(diag_goto('prev', 'ERROR')))
-  vim.keymap.set({ 'n', 'x' }, ']e', c(diag_goto('next', 'ERROR')))
-  vim.keymap.set({ 'n', 'x' }, '[w', c(diag_goto('prev', 'WARN')))
-  vim.keymap.set({ 'n', 'x' }, ']w', c(diag_goto('next', 'WARN')))
-  vim.keymap.set({ 'n', 'x' }, '[i', c(diag_goto('prev', 'INFO')))
-  vim.keymap.set({ 'n', 'x' }, ']i', c(diag_goto('next', 'INFO')))
-  vim.keymap.set({ 'n', 'x' }, '[h', c(diag_goto('prev', 'HINT')))
-  vim.keymap.set({ 'n', 'x' }, ']h', c(diag_goto('next', 'HINT')))
+  vim.keymap.set({ 'n', 'x' }, '[d', c(diag_jump('prev')))
+  vim.keymap.set({ 'n', 'x' }, ']d', c(diag_jump('next')))
+  vim.keymap.set({ 'n', 'x' }, '[e', c(diag_jump('prev', 'ERROR')))
+  vim.keymap.set({ 'n', 'x' }, ']e', c(diag_jump('next', 'ERROR')))
+  vim.keymap.set({ 'n', 'x' }, '[w', c(diag_jump('prev', 'WARN')))
+  vim.keymap.set({ 'n', 'x' }, ']w', c(diag_jump('next', 'WARN')))
+  vim.keymap.set({ 'n', 'x' }, '[i', c(diag_jump('prev', 'INFO')))
+  vim.keymap.set({ 'n', 'x' }, ']i', c(diag_jump('next', 'INFO')))
+  vim.keymap.set({ 'n', 'x' }, '[h', c(diag_jump('prev', 'HINT')))
+  vim.keymap.set({ 'n', 'x' }, ']h', c(diag_jump('next', 'HINT')))
 end
 
 ---Setup LSP handlers overrides
