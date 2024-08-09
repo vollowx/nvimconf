@@ -14,7 +14,8 @@ Benchmark 1: nvim +q
 
 `hyperfine 'nvim --clean +q'`
 
-```Benchmark 1: nvim --clean +q
+```
+Benchmark 1: nvim --clean +q
   Time (mean ± σ):      14.2 ms ±   0.5 ms    [User: 9.0 ms, System: 4.8 ms]
   Range (min … max):    13.3 ms …  15.9 ms    173 runs
 ```

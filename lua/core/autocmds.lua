@@ -176,6 +176,20 @@ augroup('AutoCreateDir', {
   },
 })
 
+augroup('LazyLoadSpell', {
+  'BufWinEnter',
+  {
+    desc = 'Lazy-load spell check',
+    callback = function()
+      vim.opt.spell = true
+      vim.opt.spellcapcheck = ''
+      vim.opt.spelllang = 'en,cjk'
+      vim.opt.spelloptions = 'camel'
+      vim.opt.spellsuggest = 'best,9'
+    end,
+  },
+})
+
 augroup('StatusColumn', {
   { 'BufWritePost', 'BufWinEnter' },
   {

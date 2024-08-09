@@ -75,25 +75,21 @@ if g.has_gui then
   })
 end
 
--- Spell check
-vim.opt.spell = true
-vim.opt.spellcapcheck = ''
-vim.opt.spelllang = 'en,cjk'
-vim.opt.spelloptions = 'camel'
-vim.opt.spellsuggest = 'best,9'
+-- Netrw settings
+g.netrw_banner          = 0
+g.netrw_cursor          = 5
+g.netrw_keepdir         = 0
+g.netrw_keepj           = ''
+g.netrw_list_hide       = [[\(^\|\s\s\)\zs\.\S\+]]
+g.netrw_liststyle       = 1
+g.netrw_localcopydircmd = 'cp -r'
 
 -- stylua: ignore start
-g.loaded_gzip            = 1
-g.loaded_tar             = 1
-g.loaded_tarPlugin       = 1
-g.loaded_zip             = 1
-g.loaded_zipPlugin       = 1
-g.loaded_getscript       = 1
-g.loaded_getscriptPlugin = 1
-g.loaded_vimball         = 1
-g.loaded_vimballPlugin   = 1
-g.loaded_2html_plugin    = 1
-g.loaded_logiPat         = 1
-g.loaded_rrhelper        = 1
-g.loaded_netrwPlugin     = 1
+g.loaded_2html_plugin      = 0
+g.loaded_gzip              = 0
+g.loaded_tar               = 0
+g.loaded_tarPlugin         = 0
+g.loaded_tutor_mode_plugin = 0
+g.loaded_zip               = 0
+g.loaded_zipPlugin         = 0
 -- stylua: ignore end
