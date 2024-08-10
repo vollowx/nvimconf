@@ -3,22 +3,12 @@
   "workspace": {
     "library": [
       "$VIMRUNTIME",
-      "$XDG_DATA_HOME/nvim",
-      "$HOME/.local/share/nvim",
       "${3rd}/luv/library"
     ],
     "checkThirdParty": "Disable"
   },
   "runtime": {
     "version": "LuaJIT",
-    "path": [
-      "./?.lua",
-      "/usr/share/luajit-2.1.0-beta3/?.lua",
-      "/usr/local/share/lua/5.1/?.lua",
-      "/usr/local/share/lua/5.1/?/init.lua",
-      "/usr/share/lua/5.1/?.lua",
-      "/usr/share/lua/5.1/?/init.lua"
-    ]
+    "pathStrict": true
   },
-  "diagnostics.globals": ["vim"]
 }

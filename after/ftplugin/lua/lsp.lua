@@ -34,6 +34,7 @@ lsp.start({
     Lua = {
       hint = { enable = true },
       format = { enable = not efm },
+      telemetry = { enable = false },
     },
   },
 })
