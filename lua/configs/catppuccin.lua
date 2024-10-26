@@ -41,6 +41,8 @@ require('catppuccin').setup({
   highlight_overrides = {
     all = function(colors)
       return {
+        Normal = { bg = colors.none },
+        NormalNC = { bg = colors.none },
         FloatBorder = { bg = colors.mantle, fg = colors.mantle },
         CursorLineNr = { fg = colors.mauve, style = { 'bold' } },
         WinSeparator = { fg = colors.surface1 },
