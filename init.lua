@@ -8,6 +8,19 @@ _G.settings = {
     background = 'dark',
     colorscheme = 'catppuccin',
   },
+  lsp_servers = {
+    lua_ls = {
+      {
+        settings = {
+          Lua = {
+            hint = { enable = true },
+            format = { enable = false },
+            telemetry = { enable = false },
+          },
+        },
+      },
+    },
+  },
 }
 
 -- stylua: ignore start
@@ -138,7 +151,8 @@ _G.icons                = {
 
 -- Setup {{{
 vim.g.has_ui = #vim.api.nvim_list_uis() > 0
-vim.g.has_gui = vim.g.has_ui and (vim.env.DISPLAY ~= nil or vim.env.WAYLAND_DISPLAY ~= nil)
+vim.g.has_gui = vim.g.has_ui
+  and (vim.env.DISPLAY ~= nil or vim.env.WAYLAND_DISPLAY ~= nil)
 
 vim.keymap.set({ 'n', 'x' }, '<Space>', '<Ignore>')
 vim.g.mapleader = ' '

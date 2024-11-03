@@ -11,21 +11,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     lazy = false,
-    opts = {
-      servers = {
-        lua_ls = {
-          {
-            settings = {
-              Lua = {
-                hint = { enable = true },
-                format = { enable = false },
-                telemetry = { enable = false },
-              },
-            },
-          },
-        },
-      },
-    },
+    opts = { servers = settings.lsp_servers },
     config = function(_, opts)
       local lspconfig = require('lspconfig')
       for server, config in pairs(opts.servers) do
