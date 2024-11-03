@@ -17,7 +17,7 @@ end
 ---Setup LSP keymaps
 ---@return nil
 local function setup_keymaps()
-  vim.keymap.set({ 'n' }, 'gq;', vim.lsp.buf.format)
+  -- vim.keymap.set({ 'n' }, 'gq;', vim.lsp.buf.format)
   vim.keymap.set({ 'n', 'x' }, 'g/', vim.lsp.buf.references)
   vim.keymap.set({ 'n', 'x' }, 'g.', vim.lsp.buf.implementation)
   vim.keymap.set({ 'n', 'x' }, 'gd', function()

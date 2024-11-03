@@ -1,7 +1,6 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'main',
     build = ':TSUpdate',
     event = { 'BufRead', 'BufNewFile', 'VeryLazy' },
     config = load_pkg('treesitter', true),

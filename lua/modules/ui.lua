@@ -28,11 +28,4 @@ return {
     event = { 'CursorMoved', 'WinScrolled' },
     config = load_pkg('scroll-eof'),
   },
-
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    event = { 'BufReadPost', 'BufNewFile' },
-    config = load_pkg('ibl'),
-  },
 }
