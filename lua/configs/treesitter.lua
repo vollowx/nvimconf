@@ -1,4 +1,4 @@
-local ts = require('nvim-treesitter')
+local ts = require('nvim-treesitter.configs')
 
 ---@param buf integer
 ---@return nil
