@@ -1,32 +1,7 @@
 local ts = require('nvim-treesitter.configs')
 
----@param buf integer
----@return nil
-local function enable_ts_folding(buf)
-  -- Treesitter folding is extremely slow in large files,
-  -- making typing and undo lag as hell
-  if not vim.api.nvim_buf_is_valid(buf) or vim.b[buf].bigfile then
-    return
-  end
-  vim.api.nvim_buf_call(buf, function()
-    local o = vim.opt_local
-    local fdm = o.fdm:get() ---@diagnostic disable-line: undefined-field
-    local fde = o.fde:get() ---@diagnostic disable-line: undefined-field
-    o.fdm = fdm == 'manual' and 'expr' or fdm
-    o.fde = fde == '0' and 'nvim_treesitter#foldexpr()' or fde
-    o.indentexpr = 'v.lua:require"nvim-treesitter".indentexpr()'
-  end)
-end
-
-enable_ts_folding(0)
-
--- Set treesitter folds
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('TSFolds', {}),
-  callback = function(info)
-    enable_ts_folding(info.buf)
-  end,
-})
+vim.api.nvim_set_option_value('foldmethod', 'expr', {})
+vim.api.nvim_set_option_value('foldexpr', 'nvim_treesitter#foldexpr()', {})
 
 ts.setup({
   auto_install = false,
@@ -63,4 +38,9 @@ ts.setup({
     'gitcommit',
     'gitignore',
   },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  indent = { enable = true },
 })

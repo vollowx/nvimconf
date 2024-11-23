@@ -1,8 +1,8 @@
 return {
   {
-    'catppuccin/nvim',
+    'uncenter/ctp-nvim',
     name = 'catppuccin',
-    branch = 'fix/blink-cmp-hl',
+    branch = 'patch-1',
     config = load_pkg('catppuccin'),
   },
 }

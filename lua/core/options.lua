@@ -76,12 +76,12 @@ if g.has_gui then
 end
 
 -- Netrw settings
-g.netrw_banner          = 0
-g.netrw_cursor          = 5
-g.netrw_keepdir         = 0
-g.netrw_keepj           = ''
-g.netrw_list_hide       = [[\(^\|\s\s\)\zs\.\S\+]]
-g.netrw_liststyle       = 1
+g.netrw_banner = 0
+g.netrw_cursor = 5
+g.netrw_keepdir = 0
+g.netrw_keepj = ''
+g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
+g.netrw_liststyle = 1
 g.netrw_localcopydircmd = 'cp -r'
 
 -- stylua: ignore start

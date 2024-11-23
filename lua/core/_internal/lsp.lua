@@ -183,37 +183,6 @@ local function setup_lsp_overrides()
   end
 end
 
-local lsp_autostop_pending
----Automatically stop LSP servers that no longer attach to any buffers
----
----  Once `BufDelete` is triggered, wait for 60s before checking and
----  stopping servers, in this way the callback will be invoked once
----  every 60 seconds at most and can stop multiple clients at once
----  if possible, which is more efficient than checking and stopping
----  clients on every `BufDelete` events
----
----@return nil
-local function setup_lsp_stopdetached()
-  vim.api.nvim_create_autocmd('BufDelete', {
-    group = vim.api.nvim_create_augroup('LspAutoStop', {}),
-    desc = 'Automatically stop detached language servers.',
-    callback = function()
-      if lsp_autostop_pending then
-        return
-      end
-      lsp_autostop_pending = true
-      vim.defer_fn(function()
-        lsp_autostop_pending = nil
-        for _, client in ipairs(vim.lsp.get_clients()) do
-          if vim.tbl_isempty(client.attached_buffers) then
-            utils.lsp.soft_stop(client)
-          end
-        end
-      end, 60000)
-    end,
-  })
-end
-
 ---Set up diagnostic signs and virtual text
 ---@return nil
 local function setup_diagnostic()
@@ -247,7 +216,6 @@ local function setup()
   end
   vim.g.loaded_lsp_diags = true
   setup_lsp_overrides()
-  setup_lsp_stopdetached()
   setup_diagnostic()
   setup_keymaps()
 end
