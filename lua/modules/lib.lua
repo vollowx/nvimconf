@@ -7,4 +7,6 @@ return {
     event = 'VeryLazy',
     config = load_pkg('devicons-auto-colors'),
   },
+
+  { 'nvzone/volt' },
 }

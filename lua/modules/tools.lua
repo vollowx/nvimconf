@@ -5,6 +5,13 @@ return {
   },
 
   {
+    'nvzone/minty',
+    cmd = { 'Shades', 'Huefy' },
+  },
+
+  { 'nvzone/typr', cmd = { 'Typr' } },
+
+  {
     'wakatime/vim-wakatime',
     event = { 'BufReadPre', 'BufNewFile' },
   },

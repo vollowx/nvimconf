@@ -28,4 +28,10 @@ return {
     event = { 'CursorMoved', 'WinScrolled' },
     config = load_pkg('scroll-eof'),
   },
+
+  {
+    'nvzone/showkeys',
+    cmd = 'ShowkeysToggle',
+    opts = { winopts = { border = 'none' } },
+  },
 }
