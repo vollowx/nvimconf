@@ -5,12 +5,6 @@ return {
   },
 
   {
-    'DanilaMihailov/beacon.nvim',
-    event = { 'CursorMoved', 'WinEnter', 'FocusGained' },
-    config = load_pkg('beacon'),
-  },
-
-  {
     'brenoprata10/nvim-highlight-colors',
     enabled = vim.g.has_gui,
     event = 'VeryLazy',
