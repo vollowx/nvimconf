@@ -52,4 +52,8 @@ end
 
 if bootstrap() then
   load_pkg('lazy')()
+  vim.keymap.set('n', '<Leader>pp', '<Cmd>Lazy<CR>')
+  vim.keymap.set('n', '<Leader>pi', '<Cmd>Lazy install<CR>')
+  vim.keymap.set('n', '<Leader>pu', '<Cmd>Lazy update<CR>')
+  vim.keymap.set('n', '<Leader>px', '<Cmd>Lazy clean<CR>')
 end

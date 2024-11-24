@@ -10,7 +10,7 @@ return {
 
   {
     'neovim/nvim-lspconfig',
-    lazy = false,
+    event = { 'FileType', 'VeryLazy' },
     opts = { servers = settings.lsp_servers },
     config = function(_, opts)
       local lspconfig = require('lspconfig')

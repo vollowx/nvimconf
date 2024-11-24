@@ -1,9 +1,9 @@
 return {
   {
     'saghen/blink.cmp',
-    lazy = false,
     dependencies = 'rafamadriz/friendly-snippets',
     version = 'v0.*',
+    event = 'InsertEnter',
     opts = {
       keymap = 'default',
       nerd_font_variant = 'mono',

@@ -28,6 +28,7 @@ require('catppuccin').setup({
     indent_blankline = { enabled = true, scope_color = 'surface1' },
     markdown = true,
     mini = { enabled = true },
+    noice = true,
     semantic_tokens = true,
     telescope = { enabled = true, style = 'nvchad' },
     treesitter_context = true,
@@ -38,11 +39,10 @@ require('catppuccin').setup({
     keywords = { 'italic' },
   },
   highlight_overrides = {
-    all = function(colors)
+    all = function(c)
       return {
-        FloatBorder = { bg = colors.mantle, fg = colors.mantle },
-        CursorLineNr = { fg = colors.mauve, style = { 'bold' } },
-        WinSeparator = { fg = colors.surface1 },
+        FloatBorder = { bg = c.mantle, fg = c.mantle },
+        StatusLine = { bg = c.mantle, fg = c.subtext1 },
       }
     end,
   },

@@ -1,20 +1,24 @@
 local o = vim.opt
+local go = vim.go
 local g = vim.g
 
 -- stylua: ignore start
-o.cursorlineopt  = 'number'
+o.cursorlineopt  = 'both'
 o.cursorline     = true
+o.foldcolumn     = 'auto'
 o.foldlevelstart = 99
 o.foldtext       = ''
 o.helpheight     = 10
 o.showmode       = false
 o.mousemoveevent = true
-o.number         = false
+o.number         = true
 o.ruler          = true
 o.pumheight      = 16
 o.scrolloff      = 4
 o.sidescrolloff  = 8
 o.signcolumn     = 'yes:1'
+o.laststatus     = 3
+o.cmdheight      = 0
 o.splitright     = true
 o.splitbelow     = true
 o.swapfile       = false
@@ -35,7 +39,6 @@ o.autowriteall   = true
 o.virtualedit    = 'block'
 o.completeopt    = 'menuone,noinsert,popup'
 o.jumpoptions    = 'stack,view'
-o.statusline     = [[%!v:lua.require'core._internal.statusline'.get()]]
 -- stylua: ignore end
 
 o.backup = true
@@ -93,3 +96,6 @@ g.loaded_tutor_mode_plugin = 0
 g.loaded_zip               = 0
 g.loaded_zipPlugin         = 0
 -- stylua: ignore end
+
+go.statusline = [[%!v:lua.require'core._internal.statusline'.get()]]
+go.tabline = [[%!v:lua.require'core._internal.tabline'.get()]]

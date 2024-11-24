@@ -176,19 +176,31 @@ augroup('AutoCreateDir', {
   },
 })
 
--- augroup('LazyLoadSpell', {
---   'BufWinEnter',
---   {
---     desc = 'Lazy-load spell check',
---     callback = function()
---       vim.opt.spell = true
---       vim.opt.spellcapcheck = ''
---       vim.opt.spelllang = 'en,cjk'
---       vim.opt.spelloptions = 'camel'
---       vim.opt.spellsuggest = 'best,9'
---     end,
---   },
--- })
+augroup('LazyLoadSpell', {
+  'BufWinEnter',
+  {
+    desc = 'Lazy-load spell check',
+    callback = function()
+      vim.opt.spell = true
+      vim.opt.spellcapcheck = ''
+      vim.opt.spelllang = 'en,cjk'
+      vim.opt.spelloptions = 'camel'
+      vim.opt.spellsuggest = 'best,9'
+    end,
+  },
+})
+
+augroup('StatusColumn', {
+  { 'BufWritePost', 'BufWinEnter' },
+  {
+    desc = 'Init statuscolumn plugin.',
+    once = true,
+    callback = function()
+      require('core._internal.statuscolumn').setup()
+      return true
+    end,
+  },
+})
 
 augroup('TerminalSettings', {
   'TermOpen',
